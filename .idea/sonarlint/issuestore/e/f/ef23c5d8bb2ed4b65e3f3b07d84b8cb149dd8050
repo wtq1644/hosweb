@@ -1,0 +1,10 @@
+
+Y
+java:S3752">Add a "method" parameter to this "@RequestMapping" annotation.(ø©¥Ù8ÕÃ®ô³.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(­èâ úÿÿÿÿ8³—’ô³.
+T
+java:S1128"4Remove this unused import 'com.mymc.tools.JsonUtil'.(Ãþÿâýÿÿÿÿ8³—’ô³.
+N
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8³—’ô³.
+J
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ8³—’ô³.

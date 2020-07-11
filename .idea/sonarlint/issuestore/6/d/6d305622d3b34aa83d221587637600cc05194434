@@ -1,0 +1,52 @@
+
+L	java:S106"9Replace this use of System.out or System.err by a logger.(øŒ¼Æ
+C
+java:S3740"/Provide the parametrized type for this generic.(¾ã°¤
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+T
+java:S1874";Remove this use of "uncheckedSimpleType"; it is deprecated.(Ú¹ë½úÿÿÿÿ
+a	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(—ž˜ëùÿÿÿÿ
+<	java:S108")Either remove or fill this block of code.(”ý¾
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+H
+java:S3740"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(ò³‹“ýÿÿÿÿ
+C
+java:S3740"/Provide the parametrized type for this generic.(Ú–÷ä
+:
+java:S1168"&Return an empty array instead of null.(¥¹ï
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(ÌÌðýÿÿÿÿ
+<	java:S108")Either remove or fill this block of code.(”ý¾
+C
+java:S3740"/Provide the parametrized type for this generic.(ôºßƒ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+?
+java:S1168"+Return an empty collection instead of null.(¥¹ï
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(ÌóÎû
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+M
+java:S2168"9Remove this dangerous instance of double-checked locking.(ë†ªû
+H
+java:S3740"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
+C
+java:S3740"/Provide the parametrized type for this generic.(ôºßƒ
+T
+java:S1874";Remove this use of "uncheckedSimpleType"; it is deprecated.(çÍâìüÿÿÿÿ
+<
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+:
+java:S1168"&Return an empty array instead of null.(¥¹ï

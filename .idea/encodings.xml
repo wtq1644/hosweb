@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-cache" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-tools" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-tools/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hosweb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hosweb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hosweb/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
