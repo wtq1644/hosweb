@@ -10,7 +10,7 @@
 
     <!--配置自动扫描包-->
     <context:annotation-config />
-    <context:component-scan base-package="com.mymc" />
+    <context:component-scan base-package="com.mymc.hosweb.service" />
 
 
     <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
@@ -40,4 +40,11 @@
         <!--配置mapper接口所在的包-->
         <property name="basePackage" value="com.mymc.hosweb.mapper"/>
     </bean>
+
+    <!-- 1 事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!-- 2 事务交予spring管理，transaction-manager 配置事务管理器-->
+    <tx:annotation-driven transaction-manager="txManager"/>
 </beans>

@@ -8,6 +8,13 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
+    <!--启动注解识别-->
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.mymc.hosweb.controller">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     <!--注解驱动-->
     <mvc:annotation-driven/>
 
@@ -17,16 +24,6 @@
         <property name="prefix" value="/view/"/>
         <!--配置视图解析后缀，目前的视图采用JSP-->
         <property name="suffix" value=".jsp"/>
-    </bean>
-
-
-
-    <!--注意：文件上传的配置，必须配置ID，而且ID的值固定为：multipartResolver-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--最大的上传大小，字节 ，如果设置为-1的话，就表示无限制-->
-        <property name="maxUploadSize" value="102400"/>
-        <!--文件编码-->
-        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
     <!--静态资源放行-->
