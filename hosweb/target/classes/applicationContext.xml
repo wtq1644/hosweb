@@ -50,7 +50,6 @@
 
 
     <!--引入springmvc.xml-->
-    <import resource="classpath*:springmvc.xml"/>
-    <import resource="classpath*:spring-redis.xml"/>
+    <import resource="classpath*:spring-*.xml"/>
 
 </beans>
