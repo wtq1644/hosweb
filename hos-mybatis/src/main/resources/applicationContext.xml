@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+
+    <!-- C3P0数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!--配置自动扫描包-->
+    <context:component-scan base-package="com.hliedu"/>
+
+    <!--sqlSessionFactory配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--注册映射文件-->
+        <property name="mapperLocations" value="classpath*:com/hliedu/**/mapper/*Mapper.xml"/>
+        <!--配置别名, 扫描实体类包，不支持ant通配符风格，必须配置到位-->
+        <property name="typeAliasesPackage">
+            <value>
+                com.hliedu.test.domain
+                <!--可换行配置多个-->
+            </value>
+        </property>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!-- config params as the following -->
+                        <value>
+                            helperDialect=mysql
+                            reasonable=false
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                            count=countSql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <!--MyBatis中Mapper接口的扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置mapper接口所在的包-->
+        <property name="basePackage" value="com.hliedu.**.mapper"/>
+    </bean>
+
+    <!-- 1 事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 2 事务交予spring管理，transaction-manager 配置事务管理器-->
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+
+    <!--引入spring-*.xml配置文件-->
+    <import resource="classpath*:spring-*.xml"/>
+
+</beans>

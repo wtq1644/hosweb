@@ -267,3 +267,82 @@ a{
 		padding-bottom: 20px;
 	}
 }
+
+/*顶部弹出提示*/
+.error_text{
+	display: none;
+	width:100%;
+	text-align: center;
+	font-size: 14px;
+	color:#ff1717;
+	background-color: #BBB;
+	padding:10px 0;
+	position: fixed;
+	top: 5px;
+	z-index: 10;
+	-webkit-animation: bot 1s forwards linear;
+	animation: bot 1s forwards linear;
+}
+@-webkit-keyframes bot {
+	0%{
+		top:0;
+	}
+	100%{
+		top:5px;
+	}
+}
+.success_text{
+	display: none;
+	width:100%;
+	text-align: center;
+	font-size: 14px;
+	color:#fff;
+	background-color: #71B452;
+	padding:10px 0;
+	position: fixed;
+	top: 5px;
+	z-index: 10;
+	-webkit-animation: bot 1s forwards linear;
+	animation: bot 1s forwards linear;
+}
+@-webkit-keyframes bot {
+	0%{
+		top:0;
+	}
+	100%{
+		top:5px;
+	}
+}
+.warn_text{
+	display: none;
+	width:100%;
+	text-align: center;
+	font-size: 14px;
+	color:#fff;
+	background-color: #EDAF40;
+	padding:10px 0;
+	position: fixed;
+	top: 5px;
+	z-index: 10;/*19891016弹出框高度*/
+	-webkit-animation: bot 1s forwards linear;
+	animation: bot 1s forwards linear;
+}
+
+.warn_text a:hover{
+	color:#fff;
+	background-color: #EDAF40;
+}
+
+.warn_text a:link{
+	color:#fff;
+	background-color: #EDAF40;
+}
+
+@-webkit-keyframes bot {
+	0%{
+		top:0;
+	}
+	100%{
+		top:5px;
+	}
+}

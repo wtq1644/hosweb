@@ -43,6 +43,7 @@
         <property name="exposeSessionAttributes" value="true" />
         <property name="exposeSpringMacroHelpers" value="true" />
         <property name="requestContextAttribute" value="base"></property>
+        <property name="allowSessionOverride" value="true"/>
         <property name="order" value="0"></property>
         <property name="prefix" value="" />
         <property name="suffix" value=".ftl" />
@@ -64,4 +65,12 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/web/**"/>
+            <mvc:exclude-mapping path="/web/sys/login"/>
+            <bean class="com.hliedu.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

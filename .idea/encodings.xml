@@ -5,8 +5,33 @@
     <file url="file://$PROJECT_DIR$/hos-cache" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hos-cache/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hos-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-html-hos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-html-mm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-html-msg/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-html-sys/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-html-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-mvc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-mvc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-mybatis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-plugin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-plugin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-bs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-bs/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-hos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-hos/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-mm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-mm/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-msg/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-msg/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-sys/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-sys/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-service-test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hos-spring/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hos-tools" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hos-tools/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hosh5/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hosweb" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hosweb/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hosweb/src/main/resources" charset="UTF-8" />

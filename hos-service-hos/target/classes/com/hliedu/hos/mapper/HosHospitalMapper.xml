@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.hos.mapper.HosHospitalMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.hos.domain.HosHospital">
+    
+    <!-- 医馆ID,自增 -->
+    <id column="HOS_ID" jdbcType="INTEGER" property="hosId" />
+    
+    <!-- 医馆代码 -->
+    <result column="HOS_CODE" jdbcType="VARCHAR" property="hosCode" />
+    
+    <!-- 医馆名称 -->
+    <result column="HOS_NAME" jdbcType="VARCHAR" property="hosName" />
+    
+    <!-- 所在省代码 -->
+    <result column="PROVINCE_CODE" jdbcType="VARCHAR" property="provinceCode" />
+    
+    <!-- 所在市代码 -->
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    
+    <!-- 所在区代码 -->
+    <result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode" />
+    
+    <!-- 所在省名称 -->
+    <result column="PROVINCE_NAME" jdbcType="VARCHAR" property="provinceName" />
+    
+    <!-- 所在市名称 -->
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    
+    <!-- 所在区名称 -->
+    <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName" />
+    
+    <!-- 详细地址 -->
+    <result column="HOS_ADDR" jdbcType="VARCHAR" property="hosAddr" />
+    
+    <!-- 医师总数 -->
+    <result column="DOCTOR_NUM" jdbcType="INTEGER" property="doctorNum" />
+    
+    <!-- 科室总数 -->
+    <result column="DEPT_NUM" jdbcType="INTEGER" property="deptNum" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 系统状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HOS_ID, HOS_CODE, HOS_NAME, PROVINCE_CODE, CITY_CODE, AREA_CODE, PROVINCE_NAME, CITY_NAME, 
+    AREA_NAME, HOS_ADDR, DOCTOR_NUM, DEPT_NUM, MEMO, GMT_CREATE, GMT_MODIFIED, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hos_hospital
+    where HOS_ID = #{hosId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hos_hospital
+    where HOS_ID = #{hosId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="HOS_ID" keyProperty="hosId" useGeneratedKeys="true">
+    insert into hos_hospital (HOS_CODE, HOS_NAME, PROVINCE_CODE, 
+      CITY_CODE, AREA_CODE, PROVINCE_NAME, 
+      CITY_NAME, AREA_NAME, HOS_ADDR, 
+      DOCTOR_NUM, DEPT_NUM, MEMO, 
+      GMT_CREATE, GMT_MODIFIED, DATA_STATE
+      )
+    values (#{hosCode,jdbcType=VARCHAR}, #{hosName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{hosAddr,jdbcType=VARCHAR}, 
+      #{doctorNum,jdbcType=INTEGER}, #{deptNum,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{dataState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="HOS_ID" keyProperty="hosId" useGeneratedKeys="true">
+    insert into hos_hospital
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hosCode != null">
+        HOS_CODE,
+      </if>
+      <if test="hosName != null">
+        HOS_NAME,
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE,
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="areaName != null">
+        AREA_NAME,
+      </if>
+      <if test="hosAddr != null">
+        HOS_ADDR,
+      </if>
+      <if test="doctorNum != null">
+        DOCTOR_NUM,
+      </if>
+      <if test="deptNum != null">
+        DEPT_NUM,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hosCode != null">
+        #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="hosAddr != null">
+        #{hosAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNum != null">
+        #{doctorNum,jdbcType=INTEGER},
+      </if>
+      <if test="deptNum != null">
+        #{deptNum,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update hos_hospital
+    <set>
+      <if test="hosCode != null">
+        HOS_CODE = #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        HOS_NAME = #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="hosAddr != null">
+        HOS_ADDR = #{hosAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNum != null">
+        DOCTOR_NUM = #{doctorNum,jdbcType=INTEGER},
+      </if>
+      <if test="deptNum != null">
+        DEPT_NUM = #{deptNum,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where HOS_ID = #{hosId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update hos_hospital
+    set HOS_CODE = #{hosCode,jdbcType=VARCHAR},
+      HOS_NAME = #{hosName,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      HOS_ADDR = #{hosAddr,jdbcType=VARCHAR},
+      DOCTOR_NUM = #{doctorNum,jdbcType=INTEGER},
+      DEPT_NUM = #{deptNum,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where HOS_ID = #{hosId,jdbcType=INTEGER}
+  </update>
+  <sql id="hos_hospital_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="hosCode != null and hosCode.trim().length() != 0">
+         AND (HOS_CODE like concat('%',#{hosCode},'%')) 
+      </if>
+      <if test="hosName != null and hosName.trim().length() != 0">
+         AND (HOS_NAME like concat('%',#{hosName},'%')) 
+      </if>
+      <if test="provinceCode != null and provinceCode.trim().length() != 0">
+         AND (PROVINCE_CODE like concat('%',#{provinceCode},'%')) 
+      </if>
+      <if test="cityCode != null and cityCode.trim().length() != 0">
+         AND (CITY_CODE like concat('%',#{cityCode},'%')) 
+      </if>
+      <if test="areaCode != null and areaCode.trim().length() != 0">
+         AND (AREA_CODE like concat('%',#{areaCode},'%')) 
+      </if>
+      <if test="provinceName != null and provinceName.trim().length() != 0">
+         AND (PROVINCE_NAME like concat('%',#{provinceName},'%')) 
+      </if>
+      <if test="cityName != null and cityName.trim().length() != 0">
+         AND (CITY_NAME like concat('%',#{cityName},'%')) 
+      </if>
+      <if test="areaName != null and areaName.trim().length() != 0">
+         AND (AREA_NAME like concat('%',#{areaName},'%')) 
+      </if>
+      <if test="hosAddr != null and hosAddr.trim().length() != 0">
+         AND (HOS_ADDR like concat('%',#{hosAddr},'%')) 
+      </if>
+      <if test="doctorNum != null">
+        AND (DOCTOR_NUM = #{doctorNum})
+      </if>
+      <if test="deptNum != null">
+        AND (DEPT_NUM = #{deptNum})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="hos_hospital_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="hosCode != null and hosCode.trim().length() != 0">
+        AND (HOS_CODE = #{hosCode})
+      </if>
+      <if test="hosName != null and hosName.trim().length() != 0">
+        AND (HOS_NAME = #{hosName})
+      </if>
+      <if test="provinceCode != null and provinceCode.trim().length() != 0">
+        AND (PROVINCE_CODE = #{provinceCode})
+      </if>
+      <if test="cityCode != null and cityCode.trim().length() != 0">
+        AND (CITY_CODE = #{cityCode})
+      </if>
+      <if test="areaCode != null and areaCode.trim().length() != 0">
+        AND (AREA_CODE = #{areaCode})
+      </if>
+      <if test="provinceName != null and provinceName.trim().length() != 0">
+        AND (PROVINCE_NAME = #{provinceName})
+      </if>
+      <if test="cityName != null and cityName.trim().length() != 0">
+        AND (CITY_NAME = #{cityName})
+      </if>
+      <if test="areaName != null and areaName.trim().length() != 0">
+        AND (AREA_NAME = #{areaName})
+      </if>
+      <if test="hosAddr != null and hosAddr.trim().length() != 0">
+        AND (HOS_ADDR = #{hosAddr})
+      </if>
+      <if test="doctorNum != null">
+        AND (DOCTOR_NUM = #{doctorNum})
+      </if>
+      <if test="deptNum != null">
+        AND (DEPT_NUM = #{deptNum})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from hos_hospital 
+    <if test="fuzzy">
+      <include refid="hos_hospital_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_hospital_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into hos_hospital ( 
+    HOS_ID,HOS_CODE,HOS_NAME,PROVINCE_CODE,CITY_CODE,AREA_CODE,PROVINCE_NAME,CITY_NAME,AREA_NAME,HOS_ADDR,DOCTOR_NUM,DEPT_NUM,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.hosId,jdbcType=INTEGER},#{item.hosCode,jdbcType=VARCHAR},#{item.hosName,jdbcType=VARCHAR},#{item.provinceCode,jdbcType=VARCHAR},#{item.cityCode,jdbcType=VARCHAR},#{item.areaCode,jdbcType=VARCHAR},#{item.provinceName,jdbcType=VARCHAR},#{item.cityName,jdbcType=VARCHAR},#{item.areaName,jdbcType=VARCHAR},#{item.hosAddr,jdbcType=VARCHAR},#{item.doctorNum,jdbcType=INTEGER},#{item.deptNum,jdbcType=INTEGER},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from hos_hospital 
+    <if test="fuzzy">
+      <include refid="hos_hospital_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_hospital_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update hos_hospital 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  HOS_ID = #{hosId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+
+  <!--批量新增医馆与科室的关系-->
+  <insert id="insertHosDeptRefBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into hos_dept_ref (
+    HOS_ID,DEPT_ID) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      ( #{item.hosId,jdbcType=INTEGER},#{item.deptId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-13 19:45:12 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

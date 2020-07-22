@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.msg.mapper.MsgConfigMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.msg.domain.MsgConfig">
+    
+    <!-- ID -->
+    <id column="CONFIG_ID" jdbcType="INTEGER" property="configId" />
+    
+    <!-- 配置CODE -->
+    <result column="CONFIG_CODE" jdbcType="VARCHAR" property="configCode" />
+    
+    <!-- 配置描述 -->
+    <result column="CONFIG_DESC" jdbcType="VARCHAR" property="configDesc" />
+    
+    <!-- 配置类型（1短信、2邮箱、3站内信、4微信） -->
+    <result column="CONFIG_TYPE" jdbcType="VARCHAR" property="configType" />
+    
+    <!-- 具体业务类型 -->
+    <result column="BUS_TYPE" jdbcType="VARCHAR" property="busType" />
+    
+    <!-- 模板属性(JSON格式) -->
+    <result column="TEMP_PROPERTY" jdbcType="VARCHAR" property="tempProperty" />
+    
+    <!-- 应用名称(1-WEB、2-H5、3-APP) -->
+    <result column="APP_NAME" jdbcType="VARCHAR" property="appName" />
+    
+    <!-- 是否即时推送(1-是) -->
+    <result column="HAS_NOW_PUSH" jdbcType="INTEGER" property="hasNowPush" />
+    
+    <!-- 有效时间(分钟)，-1无限制 -->
+    <result column="VALID_TIME" jdbcType="INTEGER" property="validTime" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 数据状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hliedu.msg.domain.MsgConfig">
+    
+    <!-- 模板内容 -->
+    <result column="TEMP_CONTENT" jdbcType="LONGVARCHAR" property="tempContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONFIG_ID, CONFIG_CODE, CONFIG_DESC, CONFIG_TYPE, BUS_TYPE, TEMP_PROPERTY, APP_NAME, 
+    HAS_NOW_PUSH, VALID_TIME, MEMO, GMT_CREATE, GMT_MODIFIED, DATA_STATE
+  </sql>
+  <sql id="Blob_Column_List">
+    TEMP_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_config
+    where CONFIG_ID = #{configId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from msg_config
+    where CONFIG_ID = #{configId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="CONFIG_ID" keyProperty="configId" useGeneratedKeys="true">
+    insert into msg_config (CONFIG_CODE, CONFIG_DESC, CONFIG_TYPE, 
+      BUS_TYPE, TEMP_PROPERTY, APP_NAME, 
+      HAS_NOW_PUSH, VALID_TIME, MEMO, 
+      GMT_CREATE, GMT_MODIFIED, DATA_STATE, 
+      TEMP_CONTENT)
+    values (#{configCode,jdbcType=VARCHAR}, #{configDesc,jdbcType=VARCHAR}, #{configType,jdbcType=VARCHAR}, 
+      #{busType,jdbcType=VARCHAR}, #{tempProperty,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, 
+      #{hasNowPush,jdbcType=INTEGER}, #{validTime,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{dataState,jdbcType=INTEGER}, 
+      #{tempContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="CONFIG_ID" keyProperty="configId" useGeneratedKeys="true">
+    insert into msg_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="configCode != null">
+        CONFIG_CODE,
+      </if>
+      <if test="configDesc != null">
+        CONFIG_DESC,
+      </if>
+      <if test="configType != null">
+        CONFIG_TYPE,
+      </if>
+      <if test="busType != null">
+        BUS_TYPE,
+      </if>
+      <if test="tempProperty != null">
+        TEMP_PROPERTY,
+      </if>
+      <if test="appName != null">
+        APP_NAME,
+      </if>
+      <if test="hasNowPush != null">
+        HAS_NOW_PUSH,
+      </if>
+      <if test="validTime != null">
+        VALID_TIME,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+      <if test="tempContent != null">
+        TEMP_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="configCode != null">
+        #{configCode,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null">
+        #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="configType != null">
+        #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null">
+        #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="tempProperty != null">
+        #{tempProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="hasNowPush != null">
+        #{hasNowPush,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="tempContent != null">
+        #{tempContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update msg_config
+    <set>
+      <if test="configCode != null">
+        CONFIG_CODE = #{configCode,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null">
+        CONFIG_DESC = #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="configType != null">
+        CONFIG_TYPE = #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null">
+        BUS_TYPE = #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="tempProperty != null">
+        TEMP_PROPERTY = #{tempProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        APP_NAME = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="hasNowPush != null">
+        HAS_NOW_PUSH = #{hasNowPush,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        VALID_TIME = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="tempContent != null">
+        TEMP_CONTENT = #{tempContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where CONFIG_ID = #{configId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs">
+    update msg_config
+    set CONFIG_CODE = #{configCode,jdbcType=VARCHAR},
+      CONFIG_DESC = #{configDesc,jdbcType=VARCHAR},
+      CONFIG_TYPE = #{configType,jdbcType=VARCHAR},
+      BUS_TYPE = #{busType,jdbcType=VARCHAR},
+      TEMP_PROPERTY = #{tempProperty,jdbcType=VARCHAR},
+      APP_NAME = #{appName,jdbcType=VARCHAR},
+      HAS_NOW_PUSH = #{hasNowPush,jdbcType=INTEGER},
+      VALID_TIME = #{validTime,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER},
+      TEMP_CONTENT = #{tempContent,jdbcType=LONGVARCHAR}
+    where CONFIG_ID = #{configId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update msg_config
+    set CONFIG_CODE = #{configCode,jdbcType=VARCHAR},
+      CONFIG_DESC = #{configDesc,jdbcType=VARCHAR},
+      CONFIG_TYPE = #{configType,jdbcType=VARCHAR},
+      BUS_TYPE = #{busType,jdbcType=VARCHAR},
+      TEMP_PROPERTY = #{tempProperty,jdbcType=VARCHAR},
+      APP_NAME = #{appName,jdbcType=VARCHAR},
+      HAS_NOW_PUSH = #{hasNowPush,jdbcType=INTEGER},
+      VALID_TIME = #{validTime,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where CONFIG_ID = #{configId,jdbcType=INTEGER}
+  </update>
+  <sql id="msg_config_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="configCode != null and configCode.trim().length() != 0">
+         AND (CONFIG_CODE like concat('%',#{configCode},'%')) 
+      </if>
+      <if test="configDesc != null and configDesc.trim().length() != 0">
+         AND (CONFIG_DESC like concat('%',#{configDesc},'%')) 
+      </if>
+      <if test="configType != null and configType.trim().length() != 0">
+         AND (CONFIG_TYPE like concat('%',#{configType},'%')) 
+      </if>
+      <if test="busType != null and busType.trim().length() != 0">
+         AND (BUS_TYPE like concat('%',#{busType},'%')) 
+      </if>
+      <if test="tempProperty != null and tempProperty.trim().length() != 0">
+         AND (TEMP_PROPERTY like concat('%',#{tempProperty},'%')) 
+      </if>
+      <if test="appName != null and appName.trim().length() != 0">
+         AND (APP_NAME like concat('%',#{appName},'%')) 
+      </if>
+      <if test="hasNowPush != null">
+        AND (HAS_NOW_PUSH = #{hasNowPush})
+      </if>
+      <if test="validTime != null">
+        AND (VALID_TIME = #{validTime})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="msg_config_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="configCode != null and configCode.trim().length() != 0">
+        AND (CONFIG_CODE = #{configCode})
+      </if>
+      <if test="configDesc != null and configDesc.trim().length() != 0">
+        AND (CONFIG_DESC = #{configDesc})
+      </if>
+      <if test="configType != null and configType.trim().length() != 0">
+        AND (CONFIG_TYPE = #{configType})
+      </if>
+      <if test="busType != null and busType.trim().length() != 0">
+        AND (BUS_TYPE = #{busType})
+      </if>
+      <if test="tempProperty != null and tempProperty.trim().length() != 0">
+        AND (TEMP_PROPERTY = #{tempProperty})
+      </if>
+      <if test="appName != null and appName.trim().length() != 0">
+        AND (APP_NAME = #{appName})
+      </if>
+      <if test="hasNowPush != null">
+        AND (HAS_NOW_PUSH = #{hasNowPush})
+      </if>
+      <if test="validTime != null">
+        AND (VALID_TIME = #{validTime})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from msg_config 
+    <if test="fuzzy">
+      <include refid="msg_config_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="msg_config_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into msg_config ( 
+    CONFIG_ID,CONFIG_CODE,CONFIG_DESC,CONFIG_TYPE,BUS_TYPE,TEMP_PROPERTY,APP_NAME,HAS_NOW_PUSH,VALID_TIME,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE,TEMP_CONTENT ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.configId,jdbcType=INTEGER},#{item.configCode,jdbcType=VARCHAR},#{item.configDesc,jdbcType=VARCHAR},#{item.configType,jdbcType=VARCHAR},#{item.busType,jdbcType=VARCHAR},#{item.tempProperty,jdbcType=VARCHAR},#{item.appName,jdbcType=VARCHAR},#{item.hasNowPush,jdbcType=INTEGER},#{item.validTime,jdbcType=INTEGER},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER},#{item.tempContent,jdbcType=LONGVARCHAR} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from msg_config 
+    <if test="fuzzy">
+      <include refid="msg_config_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="msg_config_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update msg_config 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  CONFIG_ID = #{configId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-15 14:19:58 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.test.mapper.BbsZoneMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.test.domain.BbsZone">
+    
+    <!-- ID -->
+    <id column="ZONE_ID" jdbcType="INTEGER" property="zoneId" />
+    
+    <!-- 空间专区CODE -->
+    <result column="ZONE_CODE" jdbcType="VARCHAR" property="zoneCode" />
+    
+    <!-- 专区名称 -->
+    <result column="ZONE_NAME" jdbcType="VARCHAR" property="zoneName" />
+    
+    <!-- 专区描述 -->
+    <result column="ZONE_REMARK" jdbcType="VARCHAR" property="zoneRemark" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ZONE_ID, ZONE_CODE, ZONE_NAME, ZONE_REMARK, GMT_CREATE, GMT_MODIFIED, MEMO, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bbs_zone
+    where ZONE_ID = #{zoneId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bbs_zone
+    where ZONE_ID = #{zoneId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ZONE_ID" keyProperty="zoneId" useGeneratedKeys="true">
+    insert into bbs_zone (ZONE_CODE, ZONE_NAME, ZONE_REMARK, 
+      GMT_CREATE, GMT_MODIFIED, MEMO, 
+      DATA_STATE)
+    values (#{zoneCode,jdbcType=VARCHAR}, #{zoneName,jdbcType=VARCHAR}, #{zoneRemark,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, 
+      #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="ZONE_ID" keyProperty="zoneId" useGeneratedKeys="true">
+    insert into bbs_zone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zoneCode != null">
+        ZONE_CODE,
+      </if>
+      <if test="zoneName != null">
+        ZONE_NAME,
+      </if>
+      <if test="zoneRemark != null">
+        ZONE_REMARK,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zoneCode != null">
+        #{zoneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneName != null">
+        #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneRemark != null">
+        #{zoneRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update bbs_zone
+    <set>
+      <if test="zoneCode != null">
+        ZONE_CODE = #{zoneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneName != null">
+        ZONE_NAME = #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneRemark != null">
+        ZONE_REMARK = #{zoneRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ZONE_ID = #{zoneId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update bbs_zone
+    set ZONE_CODE = #{zoneCode,jdbcType=VARCHAR},
+      ZONE_NAME = #{zoneName,jdbcType=VARCHAR},
+      ZONE_REMARK = #{zoneRemark,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where ZONE_ID = #{zoneId,jdbcType=INTEGER}
+  </update>
+  <sql id="bbs_zone_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="zoneCode != null and zoneCode.trim().length() != 0">
+         AND (ZONE_CODE like concat('%',#{zoneCode},'%')) 
+      </if>
+      <if test="zoneName != null and zoneName.trim().length() != 0">
+         AND (ZONE_NAME like concat('%',#{zoneName},'%')) 
+      </if>
+      <if test="zoneRemark != null and zoneRemark.trim().length() != 0">
+         AND (ZONE_REMARK like concat('%',#{zoneRemark},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="bbs_zone_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="zoneCode != null and zoneCode.trim().length() != 0">
+        AND (ZONE_CODE = #{zoneCode})
+      </if>
+      <if test="zoneName != null and zoneName.trim().length() != 0">
+        AND (ZONE_NAME = #{zoneName})
+      </if>
+      <if test="zoneRemark != null and zoneRemark.trim().length() != 0">
+        AND (ZONE_REMARK = #{zoneRemark})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from bbs_zone 
+    <if test="fuzzy">
+      <include refid="bbs_zone_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="bbs_zone_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into bbs_zone ( 
+    ZONE_ID,ZONE_CODE,ZONE_NAME,ZONE_REMARK,GMT_CREATE,GMT_MODIFIED,MEMO,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.zoneId,jdbcType=INTEGER},#{item.zoneCode,jdbcType=VARCHAR},#{item.zoneName,jdbcType=VARCHAR},#{item.zoneRemark,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.memo,jdbcType=VARCHAR},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from bbs_zone 
+    <if test="fuzzy">
+      <include refid="bbs_zone_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="bbs_zone_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update bbs_zone 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  ZONE_ID = #{zoneId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-05-30 19:18:50 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

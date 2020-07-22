@@ -1,10 +1,13 @@
 
-Y
-java:S3752">Add a "method" parameter to this "@RequestMapping" annotation.(ø©¥Ù8ÕÃ®ô³.
-X	java:S106"9Replace this use of System.out or System.err by a logger.(­èâ úÿÿÿÿ8³—’ô³.
-T
-java:S1128"4Remove this unused import 'com.mymc.tools.JsonUtil'.(Ãşÿâıÿÿÿÿ8³—’ô³.
-N
-java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8³—’ô³.
-J
-java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8³—’ô³.
+]	java:S125D"<This block of commented-out lines of code should be removed.(ä¡ıÙıÿÿÿÿ8øÅëÂ´.
+Z	java:S106>"9Replace this use of System.out or System.err by a logger.(­èâ úÿÿÿÿ8øÅëÂ´.
+X	java:S125U"<This block of commented-out lines of code should be removed.(Ÿ•Ñ¡8øÅëÂ´.
+]	java:S125/"<This block of commented-out lines of code should be removed.(­¿ëÖÿÿÿÿÿ8øÅëÂ´.
+]	java:S1252"<This block of commented-out lines of code should be removed.(™äî¶úÿÿÿÿ8øÅëÂ´.
+]	java:S125+"<This block of commented-out lines of code should be removed.(¢ÏŠ©ÿÿÿÿÿ8øÅëÂ´.
+X	java:S1256"<This block of commented-out lines of code should be removed.(Ìßƒÿ8øÅëÂ´.
+X	java:S125H"<This block of commented-out lines of code should be removed.(ù˜Ä8øÅëÂ´.
+[
+java:S3752)">Add a "method" parameter to this "@RequestMapping" annotation.(ø©¥Ù8øÅëÂ´.
+{
+java:S2293Q"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ºöºıÿÿÿÿ8øÅëÂ´.

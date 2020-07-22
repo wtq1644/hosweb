@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.bs.mapper.BsCityMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.bs.domain.BsCity">
+    
+    <!-- 自增列 -->
+    <id column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    
+    <!-- 市代码 -->
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    
+    <!-- 市名称 -->
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    
+    <!-- 简称 -->
+    <result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName" />
+    
+    <!-- 省代码 -->
+    <result column="PROVINCE_CODE" jdbcType="VARCHAR" property="provinceCode" />
+    
+    <!-- 经度 -->
+    <result column="LNG" jdbcType="VARCHAR" property="lng" />
+    
+    <!-- 纬度 -->
+    <result column="LAT" jdbcType="VARCHAR" property="lat" />
+    
+    <!-- 排序 -->
+    <result column="SORT" jdbcType="INTEGER" property="sort" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CITY_ID, CITY_CODE, CITY_NAME, SHORT_NAME, PROVINCE_CODE, LNG, LAT, SORT, GMT_CREATE, 
+    GMT_MODIFIED, MEMO, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bs_city
+    where CITY_ID = #{cityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bs_city
+    where CITY_ID = #{cityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="CITY_ID" keyProperty="cityId" useGeneratedKeys="true">
+    insert into bs_city (CITY_CODE, CITY_NAME, SHORT_NAME, 
+      PROVINCE_CODE, LNG, LAT, 
+      SORT, GMT_CREATE, GMT_MODIFIED, 
+      MEMO, DATA_STATE)
+    values (#{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="CITY_ID" keyProperty="cityId" useGeneratedKeys="true">
+    insert into bs_city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME,
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE,
+      </if>
+      <if test="lng != null">
+        LNG,
+      </if>
+      <if test="lat != null">
+        LAT,
+      </if>
+      <if test="sort != null">
+        SORT,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update bs_city
+    <set>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        LNG = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        LAT = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where CITY_ID = #{cityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update bs_city
+    set CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      LNG = #{lng,jdbcType=VARCHAR},
+      LAT = #{lat,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where CITY_ID = #{cityId,jdbcType=INTEGER}
+  </update>
+  <sql id="bs_city_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="cityCode != null and cityCode.trim().length() != 0">
+         AND (CITY_CODE like concat('%',#{cityCode},'%')) 
+      </if>
+      <if test="cityName != null and cityName.trim().length() != 0">
+         AND (CITY_NAME like concat('%',#{cityName},'%')) 
+      </if>
+      <if test="shortName != null and shortName.trim().length() != 0">
+         AND (SHORT_NAME like concat('%',#{shortName},'%')) 
+      </if>
+      <if test="provinceCode != null and provinceCode.trim().length() != 0">
+         AND (PROVINCE_CODE like concat('%',#{provinceCode},'%')) 
+      </if>
+      <if test="lng != null and lng.trim().length() != 0">
+         AND (LNG like concat('%',#{lng},'%')) 
+      </if>
+      <if test="lat != null and lat.trim().length() != 0">
+         AND (LAT like concat('%',#{lat},'%')) 
+      </if>
+      <if test="sort != null">
+        AND (SORT = #{sort})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="bs_city_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="cityCode != null and cityCode.trim().length() != 0">
+        AND (CITY_CODE = #{cityCode})
+      </if>
+      <if test="cityName != null and cityName.trim().length() != 0">
+        AND (CITY_NAME = #{cityName})
+      </if>
+      <if test="shortName != null and shortName.trim().length() != 0">
+        AND (SHORT_NAME = #{shortName})
+      </if>
+      <if test="provinceCode != null and provinceCode.trim().length() != 0">
+        AND (PROVINCE_CODE = #{provinceCode})
+      </if>
+      <if test="lng != null and lng.trim().length() != 0">
+        AND (LNG = #{lng})
+      </if>
+      <if test="lat != null and lat.trim().length() != 0">
+        AND (LAT = #{lat})
+      </if>
+      <if test="sort != null">
+        AND (SORT = #{sort})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from bs_city 
+    <if test="fuzzy">
+      <include refid="bs_city_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="bs_city_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into bs_city ( 
+    CITY_ID,CITY_CODE,CITY_NAME,SHORT_NAME,PROVINCE_CODE,LNG,LAT,SORT,GMT_CREATE,GMT_MODIFIED,MEMO,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.cityId,jdbcType=INTEGER},#{item.cityCode,jdbcType=VARCHAR},#{item.cityName,jdbcType=VARCHAR},#{item.shortName,jdbcType=VARCHAR},#{item.provinceCode,jdbcType=VARCHAR},#{item.lng,jdbcType=VARCHAR},#{item.lat,jdbcType=VARCHAR},#{item.sort,jdbcType=INTEGER},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.memo,jdbcType=VARCHAR},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from bs_city 
+    <if test="fuzzy">
+      <include refid="bs_city_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="bs_city_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update bs_city 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  CITY_ID = #{cityId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-13 17:15:38 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

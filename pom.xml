@@ -4,14 +4,478 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mymc.ee</groupId>
+    <groupId>com.hliedu.ee</groupId>
     <artifactId>hosiptal-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!--保证版本的唯一性-->
+        <spring.version>5.1.5.RELEASE</spring.version>
+        <aopalliance.version>1.0</aopalliance.version>
+        <aspectjweaver.version>1.9.2</aspectjweaver.version>
+
+        <!--文件上传-->
+        <fileupload.version>1.3.3</fileupload.version>
+        <commons-io.version>2.6</commons-io.version>
+
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <jackson.version>2.9.8</jackson.version>
+
+        <!-- redis 版本 -->
+        <redis.version>2.9.0</redis.version>
+        <spring.redis.version>1.8.4.RELEASE</spring.redis.version>
+
+        <!--日志处理-->
+        <log4j.version>1.2.17</log4j.version>
+        <slf4j-log4j12.version>1.7.21</slf4j-log4j12.version>
+
+        <!--MyBatis-->
+        <mybatis-generator.version>1.3.7</mybatis-generator.version>
+        <mybatis-spring.version>1.3.2</mybatis-spring.version>
+        <mybatis.version>3.5.0</mybatis.version>
+        <pagehelper.version>5.1.10</pagehelper.version>
+
+        <!--JDBC-->
+        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <c3p0.version>0.9.5.2</c3p0.version>
+
+        <!--其他依赖-->
+        <junit.version>4.12</junit.version>
+        <lombok.version>1.16.10</lombok.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
+
+        <mail.version>1.4.5</mail.version>
+
+
+        <!--本地项目版本控制-->
+        <hos-mybaits.version>1.0-SNAPSHOT</hos-mybaits.version>
+        <hos-spring.version>1.0-SNAPSHOT</hos-spring.version>
+        <hos-mvc.version>1.0-SNAPSHOT</hos-mvc.version>
+        <hos-tools.version>1.0-SNAPSHOT</hos-tools.version>
+        <hos-cache.version>1.0-SNAPSHOT</hos-cache.version>
+        <hos-plugin.version>1.0-SNAPSHOT</hos-plugin.version>
+
+        <!--service层-->
+        <hos-service-test.version>1.0-SNAPSHOT</hos-service-test.version>
+        <hos-service-bs.version>1.0-SNAPSHOT</hos-service-bs.version>
+        <hos-service-hos.version>1.0-SNAPSHOT</hos-service-hos.version>
+        <hos-service-mm.version>1.0-SNAPSHOT</hos-service-mm.version>
+        <hos-service-msg.version>1.0-SNAPSHOT</hos-service-msg.version>
+        <hos-service-sys.version>1.0-SNAPSHOT</hos-service-sys.version>
+
+        <!--html-->
+        <hos-html-test.version>1.0-SNAPSHOT</hos-html-test.version>
+        <hos-html-sys.version>1.0-SNAPSHOT</hos-html-sys.version>
+        <hos-html-hos.version>1.0-SNAPSHOT</hos-html-hos.version>
+        <hos-html-mm.version>1.0-SNAPSHOT</hos-html-mm.version>
+        <hos-html-msg.version>1.0-SNAPSHOT</hos-html-msg.version>
+        <hos-html-wechat.version>1.0-SNAPSHOT</hos-html-wechat.version>
+
+        <!--war包模块-->
+        <hosweb.version>1.0-SNAPSHOT</hosweb.version>
+        <hosh5.version>1.0-SNAPSHOT</hosh5.version>
+        <hosstatic.version>1.0-SNAPSHOT</hosstatic.version>
+    </properties>
+
+    <!--传递依赖-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!--Spring官方依赖包 start-->
+            <!-- bean context core expression -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--Spring对JDBC的支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--spring测试jar，用于Junit单元测试-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--spring aop官方包-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--其他厂商aop支持依赖包-->
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${aopalliance.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
+            </dependency>
+            <!--Spring官方依赖包 end-->
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!--文件上传依赖的jar包-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+
+            <!--mybatis所需jar包-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!--注意该jar包为com.mchange下的0.9.5.2版本-->
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${c3p0.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <!--逆向工程所需包-->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator.version}</version>
+            </dependency>
+
+            <!--日志所需包-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j-log4j12.version}</version>
+            </dependency>
+
+            <!-- Spring集成MyBatis -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <!--作为子项目传递就必须将scope改变为compile-->
+                <scope>compile</scope>
+            </dependency>
+
+            <!--声明式事务-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-websocket</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+
+            <!--邮箱发送-->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${mail.version}</version>
+            </dependency>
+
+            <!-- freemarker模板 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!--redis-->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>${spring.redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.9</version>
+            </dependency>
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>2.3.6</version>
+            </dependency>
+
+
+            <!--本项目模块-->
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-mybatis</artifactId>
+                <version>${hos-mybaits.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-spring</artifactId>
+                <version>${hos-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-mvc</artifactId>
+                <version>${hos-mvc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-tools</artifactId>
+                <version>${hos-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-cache</artifactId>
+                <version>${hos-cache.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-plugin</artifactId>
+                <version>${hos-plugin.version}</version>
+            </dependency>
+
+            <!--本项目service模块-->
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-test</artifactId>
+                <version>${hos-service-test.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-bs</artifactId>
+                <version>${hos-service-bs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-hos</artifactId>
+                <version>${hos-service-hos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-mm</artifactId>
+                <version>${hos-service-mm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-msg</artifactId>
+                <version>${hos-service-msg.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-service-sys</artifactId>
+                <version>${hos-service-sys.version}</version>
+            </dependency>
+
+            <!--本项目html模块-->
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-html-test</artifactId>
+                <version>${hos-html-test.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-html-sys</artifactId>
+                <version>${hos-html-sys.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-html-hos</artifactId>
+                <version>${hos-html-hos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-html-mm</artifactId>
+                <version>${hos-html-mm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hliedu.ee</groupId>
+                <artifactId>hos-html-msg</artifactId>
+                <!--suppress MybatisMapperXmlInspection -->
+                <version>${hos-html-msg.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>${mybatis-generator.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector-java.version}</version>
+                    </dependency>
+                    <!--需要加入的jar依赖-->
+                    <dependency>
+                        <groupId>com.hliedu.ee</groupId>
+                        <artifactId>hos-plugin</artifactId>
+                        <version>${hos-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
     <modules>
         <module>hosweb</module>
         <module>hos-cache</module>
         <module>hos-tools</module>
-    </modules>
-    <packaging>pom</packaging>
+        <module>hos-mvc</module>
+        <module>hosstatic</module>
+        <module>hos-mybatis</module>
+        <module>hos-service-test</module>
+        <module>hos-spring</module>
+        <module>hos-html-test</module>
+        <module>hos-plugin</module>
+        <module>hos-service-bs</module>
+        <module>hos-service-hos</module>
+        <module>hos-service-mm</module>
+        <module>hos-service-sys</module>
+        <module>hos-service-msg</module>
+        <module>hos-html-sys</module>
+        <module>hos-html-hos</module>
+        <module>hosh5</module>
+        <module>hos-html-mm</module>
+        <module>hos-html-msg</module>
 
+    </modules>
 </project>

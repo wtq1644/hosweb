@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- context:生成一组对象的环境 -->
+    <context id="mysql" targetRuntime="MyBatis3">
+        <plugin type="com.hliedu.plugin.generation.StatementAddPlugin">
+            <!--<property name="isFuzzy" value="true"/>-->
+        </plugin>
+
+        <plugin type="com.hliedu.plugin.generation.ModelLombokPlugin"/>
+        <!-- 自定义的注释生成插件-->
+        <plugin type="com.hliedu.plugin.generation.CommentPlugin">
+            <!-- 抑制警告 -->
+            <property name="suppressTypeWarnings" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false" />
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true" />
+        </plugin>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <!--注释关闭-->
+        <commentGenerator>
+            <!--关闭生成的日期注释-->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/hosweb?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8"
+                        userId="test"
+                        password="123456">
+            <!--MySQL 不支持 schema 或者 catalog 所以需要添加这个-->
+            <!--参考 : http://www.mybatis.org/generator/usage/mysql.html-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- java类型处理器 -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- java模型创建器，是必须要的元素  -->
+        <javaModelGenerator targetPackage="com.hliedu.mybatis.domain" targetProject="src/main/java">
+            <property name="constructorBased" value="false"/>
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成SQL map的XML文件生成器， -->
+        <sqlMapGenerator targetPackage="com.hliedu.mybatis.mapper"  targetProject="src/main/resources">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口   -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hliedu.mybatis.mapper"  targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素  -->
+        <table tableName="bbs_zone" domainObjectName="BbsZone"
+               enableSelectByExample="false"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false">
+
+            <!-- 参考 javaModelGenerator 的 constructorBased属性-->
+            <property name="constructorBased" value="false"/>
+
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema； -->
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+
+            <!-- generatedKey用于生成生成主键的方法，
+            JDBC      :相当于在生成的insert元素上添加useGeneratedKeys="true"和keyProperty属性
+            -->
+            <generatedKey column="ZONE_ID" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>

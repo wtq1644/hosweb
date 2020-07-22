@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="javaMapperPackage" value="com.mymc.mybatis.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+        <option name="javaModelPackage" value="com.mymc.mybatis.domain" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="hos-mybatis" />
+        <option name="lombokAllArgConstructor" value="true" />
+        <option name="lombokDataAnnotation" value="true" />
+        <option name="lombokNoArgsConstructor" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="hos-mybatis">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.mymc.mybatis.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+                  <option name="javaModelPacakge" value="com.mymc.mybatis.domain" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/hos-mybatis/src/main/java" />
+                  <option name="xmlPackage" value="mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/hos-mybatis/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="hosweb:bbs_zone">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="ZONE_ID" />
+                  <option name="javaModelName" value="BbsZone" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:bs_area">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="AREA_ID" />
+                  <option name="javaModelName" value="BsArea" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:bs_city">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="CITY_ID" />
+                  <option name="javaModelName" value="BsCity" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:bs_province">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="PROVINCE_ID" />
+                  <option name="javaModelName" value="BsProvince" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:emp">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="Emp" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:hos_dept">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="DEPT_ID" />
+                  <option name="javaModelName" value="HosDept" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:hos_dept_ref">
+              <value>
+                <TableGenerateConfig>
+                  <option name="javaModelName" value="HosDeptRef" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:hos_doc_plan">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="PLAN_ID" />
+                  <option name="javaModelName" value="HosDocPlan" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:hos_doctor">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="DOC_ID" />
+                  <option name="javaModelName" value="HosDoctor" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:hos_hospital">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="HOS_ID" />
+                  <option name="javaModelName" value="HosHospital" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:mm_merber">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="MERBER_ID" />
+                  <option name="javaModelName" value="MmMerber" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:mm_order_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="ORDER_ID" />
+                  <option name="javaModelName" value="MmOrderInfo" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:mm_patient">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="PATIENT_ID" />
+                  <option name="javaModelName" value="MmPatient" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:msg_config">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="CONFIG_ID" />
+                  <option name="javaModelName" value="MsgConfig" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:msg_mns_email">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="MSG_ID" />
+                  <option name="javaModelName" value="MsgMnsEmail" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:msg_push_msg">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="MSG_ID" />
+                  <option name="javaModelName" value="MsgPushMsg" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:sys_const">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="CONST_ID" />
+                  <option name="javaModelName" value="SysConst" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:sys_dd">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="DD_ID" />
+                  <option name="javaModelName" value="SysDd" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="hosweb:sys_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="USER_ID" />
+                  <option name="javaModelName" value="SysUser" />
+                  <option name="moduleName" value="hos-mybatis" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/hos-mybatis/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

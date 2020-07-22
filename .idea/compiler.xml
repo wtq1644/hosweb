@@ -6,9 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="hos-cache" />
         <module name="hos-tools" />
+        <module name="hos-html-mm" />
+        <module name="hos-service-sys" />
+        <module name="hos-cache" />
+        <module name="hos-service-hos" />
+        <module name="hosstatic" />
+        <module name="hos-html-sys" />
+        <module name="hos-spring" />
+        <module name="hos-service-mm" />
+        <module name="hos-plugin" />
+        <module name="hos-service-bs" />
+        <module name="hos-html-msg" />
         <module name="hosweb" />
+        <module name="hos-html-hos" />
+        <module name="hos-service-msg" />
+        <module name="hosh5" />
+        <module name="hos-html-test" />
+        <module name="hos-mybatis" />
+        <module name="hos-service-test" />
+        <module name="hos-mvc" />
       </profile>
     </annotationProcessing>
   </component>

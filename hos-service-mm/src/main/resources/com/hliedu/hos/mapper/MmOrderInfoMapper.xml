@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.mm.mapper.MmOrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.mm.domain.MmOrderInfo">
+    
+    <!-- ID -->
+    <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    
+    <!-- 预约单号 -->
+    <result column="ORDER_CODE" jdbcType="VARCHAR" property="orderCode" />
+    
+    <!-- 预约医师CODE -->
+    <result column="DOC_CODE" jdbcType="VARCHAR" property="docCode" />
+    
+    <!-- 预约人CODE -->
+    <result column="MERBER_CODE" jdbcType="VARCHAR" property="merberCode" />
+    
+    <!-- 就诊人CODE -->
+    <result column="PATIENT_CODE" jdbcType="VARCHAR" property="patientCode" />
+    
+    <!-- 医师排期CODE -->
+    <result column="PLAN_CODE" jdbcType="VARCHAR" property="planCode" />
+    
+    <!-- 预约类型(1-专家门诊) -->
+    <result column="ORDER_TYPE" jdbcType="INTEGER" property="orderType" />
+    
+    <!-- 费用 -->
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    
+    <!-- 初/复诊(1-初诊、2-复诊) -->
+    <result column="ORDER_COUNT" jdbcType="INTEGER" property="orderCount" />
+    
+    <!-- 就诊日期 -->
+    <result column="TREAT_DATE" jdbcType="TIMESTAMP" property="treatDate" />
+    
+    <!-- 就诊状态(1新建、2待就诊、3已就诊、4取消预约) -->
+    <result column="TREAT_STATE" jdbcType="INTEGER" property="treatState" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 系统状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_ID, ORDER_CODE, DOC_CODE, MERBER_CODE, PATIENT_CODE, PLAN_CODE, ORDER_TYPE, 
+    PRICE, ORDER_COUNT, TREAT_DATE, TREAT_STATE, GMT_CREATE, GMT_MODIFIED, MEMO, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mm_order_info
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mm_order_info
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ORDER_ID" keyProperty="orderId" useGeneratedKeys="true">
+    insert into mm_order_info (ORDER_CODE, DOC_CODE, MERBER_CODE, 
+      PATIENT_CODE, PLAN_CODE, ORDER_TYPE, 
+      PRICE, ORDER_COUNT, TREAT_DATE, 
+      TREAT_STATE, GMT_CREATE, GMT_MODIFIED, 
+      MEMO, DATA_STATE)
+    values (#{orderCode,jdbcType=VARCHAR}, #{docCode,jdbcType=VARCHAR}, #{merberCode,jdbcType=VARCHAR}, 
+      #{patientCode,jdbcType=VARCHAR}, #{planCode,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{orderCount,jdbcType=INTEGER}, #{treatDate,jdbcType=TIMESTAMP}, 
+      #{treatState,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{memo,jdbcType=VARCHAR}, #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="ORDER_ID" keyProperty="orderId" useGeneratedKeys="true">
+    insert into mm_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderCode != null">
+        ORDER_CODE,
+      </if>
+      <if test="docCode != null">
+        DOC_CODE,
+      </if>
+      <if test="merberCode != null">
+        MERBER_CODE,
+      </if>
+      <if test="patientCode != null">
+        PATIENT_CODE,
+      </if>
+      <if test="planCode != null">
+        PLAN_CODE,
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="orderCount != null">
+        ORDER_COUNT,
+      </if>
+      <if test="treatDate != null">
+        TREAT_DATE,
+      </if>
+      <if test="treatState != null">
+        TREAT_STATE,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docCode != null">
+        #{docCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merberCode != null">
+        #{merberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCode != null">
+        #{patientCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planCode != null">
+        #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCount != null">
+        #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="treatDate != null">
+        #{treatDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="treatState != null">
+        #{treatState,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update mm_order_info
+    <set>
+      <if test="orderCode != null">
+        ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docCode != null">
+        DOC_CODE = #{docCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merberCode != null">
+        MERBER_CODE = #{merberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="patientCode != null">
+        PATIENT_CODE = #{patientCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planCode != null">
+        PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCount != null">
+        ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="treatDate != null">
+        TREAT_DATE = #{treatDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="treatState != null">
+        TREAT_STATE = #{treatState,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update mm_order_info
+    set ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      DOC_CODE = #{docCode,jdbcType=VARCHAR},
+      MERBER_CODE = #{merberCode,jdbcType=VARCHAR},
+      PATIENT_CODE = #{patientCode,jdbcType=VARCHAR},
+      PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      PRICE = #{price,jdbcType=DECIMAL},
+      ORDER_COUNT = #{orderCount,jdbcType=INTEGER},
+      TREAT_DATE = #{treatDate,jdbcType=TIMESTAMP},
+      TREAT_STATE = #{treatState,jdbcType=INTEGER},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <sql id="mm_order_info_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="orderCode != null and orderCode.trim().length() != 0">
+         AND (ORDER_CODE like concat('%',#{orderCode},'%')) 
+      </if>
+      <if test="docCode != null and docCode.trim().length() != 0">
+         AND (DOC_CODE like concat('%',#{docCode},'%')) 
+      </if>
+      <if test="merberCode != null and merberCode.trim().length() != 0">
+         AND (MERBER_CODE like concat('%',#{merberCode},'%')) 
+      </if>
+      <if test="patientCode != null and patientCode.trim().length() != 0">
+         AND (PATIENT_CODE like concat('%',#{patientCode},'%')) 
+      </if>
+      <if test="planCode != null and planCode.trim().length() != 0">
+         AND (PLAN_CODE like concat('%',#{planCode},'%')) 
+      </if>
+      <if test="orderType != null">
+        AND (ORDER_TYPE = #{orderType})
+      </if>
+      <if test="price != null">
+        AND (PRICE = #{price})
+      </if>
+      <if test="orderCount != null">
+        AND (ORDER_COUNT = #{orderCount})
+      </if>
+      <if test="treatDate != null">
+        AND (TREAT_DATE = #{treatDate})
+      </if>
+      <if test="treatState != null">
+        AND (TREAT_STATE = #{treatState})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="mm_order_info_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="orderCode != null and orderCode.trim().length() != 0">
+        AND (ORDER_CODE = #{orderCode})
+      </if>
+      <if test="docCode != null and docCode.trim().length() != 0">
+        AND (DOC_CODE = #{docCode})
+      </if>
+      <if test="merberCode != null and merberCode.trim().length() != 0">
+        AND (MERBER_CODE = #{merberCode})
+      </if>
+      <if test="patientCode != null and patientCode.trim().length() != 0">
+        AND (PATIENT_CODE = #{patientCode})
+      </if>
+      <if test="planCode != null and planCode.trim().length() != 0">
+        AND (PLAN_CODE = #{planCode})
+      </if>
+      <if test="orderType != null">
+        AND (ORDER_TYPE = #{orderType})
+      </if>
+      <if test="price != null">
+        AND (PRICE = #{price})
+      </if>
+      <if test="orderCount != null">
+        AND (ORDER_COUNT = #{orderCount})
+      </if>
+      <if test="treatDate != null">
+        AND (TREAT_DATE = #{treatDate})
+      </if>
+      <if test="treatState != null">
+        AND (TREAT_STATE = #{treatState})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from mm_order_info 
+    <if test="fuzzy">
+      <include refid="mm_order_info_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="mm_order_info_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into mm_order_info ( 
+    ORDER_ID,ORDER_CODE,DOC_CODE,MERBER_CODE,PATIENT_CODE,PLAN_CODE,ORDER_TYPE,PRICE,ORDER_COUNT,TREAT_DATE,TREAT_STATE,GMT_CREATE,GMT_MODIFIED,MEMO,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.orderId,jdbcType=INTEGER},#{item.orderCode,jdbcType=VARCHAR},#{item.docCode,jdbcType=VARCHAR},#{item.merberCode,jdbcType=VARCHAR},#{item.patientCode,jdbcType=VARCHAR},#{item.planCode,jdbcType=VARCHAR},#{item.orderType,jdbcType=INTEGER},#{item.price,jdbcType=DECIMAL},#{item.orderCount,jdbcType=INTEGER},#{item.treatDate,jdbcType=TIMESTAMP},#{item.treatState,jdbcType=INTEGER},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.memo,jdbcType=VARCHAR},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from mm_order_info 
+    <if test="fuzzy">
+      <include refid="mm_order_info_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="mm_order_info_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update mm_order_info 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  ORDER_ID = #{orderId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-15 14:00:38 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

@@ -8,7 +8,7 @@
     	select * from emp
   	</select>
 
-    <insert id="addEmp" parameterType="Emp">
+    <insert id="addEmp" parameterType="com.mymc.hosweb.domain.Emp">
         insert into emp values(#{eid},#{ename},#{job})
     </insert>
 

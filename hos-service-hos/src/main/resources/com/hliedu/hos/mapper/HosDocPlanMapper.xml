@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.hos.mapper.HosDocPlanMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.hos.domain.HosDocPlan">
+    
+    <!-- ID -->
+    <id column="PLAN_ID" jdbcType="INTEGER" property="planId" />
+    
+    <!-- 排期CODE -->
+    <result column="PLAN_CODE" jdbcType="VARCHAR" property="planCode" />
+    
+    <!-- 医师CODE -->
+    <result column="DOC_CODE" jdbcType="VARCHAR" property="docCode" />
+    
+    <!-- 日期 -->
+    <result column="PLAN_DATE" jdbcType="VARCHAR" property="planDate" />
+    
+    <!-- 周几 -->
+    <result column="PLAN_WEEK" jdbcType="VARCHAR" property="planWeek" />
+    
+    <!-- 接待人数 -->
+    <result column="ASK_NUM" jdbcType="INTEGER" property="askNum" />
+    
+    <!-- 已预约人数 -->
+    <result column="SUBSCRIBE_NUM" jdbcType="INTEGER" property="subscribeNum" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PLAN_ID, PLAN_CODE, DOC_CODE, PLAN_DATE, PLAN_WEEK, ASK_NUM, SUBSCRIBE_NUM, MEMO, 
+    GMT_CREATE, GMT_MODIFIED, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hos_doc_plan
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hos_doc_plan
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="PLAN_ID" keyProperty="planId" useGeneratedKeys="true">
+    insert into hos_doc_plan (PLAN_CODE, DOC_CODE, PLAN_DATE, 
+      PLAN_WEEK, ASK_NUM, SUBSCRIBE_NUM, 
+      MEMO, GMT_CREATE, GMT_MODIFIED, 
+      DATA_STATE)
+    values (#{planCode,jdbcType=VARCHAR}, #{docCode,jdbcType=VARCHAR}, #{planDate,jdbcType=VARCHAR}, 
+      #{planWeek,jdbcType=VARCHAR}, #{askNum,jdbcType=INTEGER}, #{subscribeNum,jdbcType=INTEGER}, 
+      #{memo,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="PLAN_ID" keyProperty="planId" useGeneratedKeys="true">
+    insert into hos_doc_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="planCode != null">
+        PLAN_CODE,
+      </if>
+      <if test="docCode != null">
+        DOC_CODE,
+      </if>
+      <if test="planDate != null">
+        PLAN_DATE,
+      </if>
+      <if test="planWeek != null">
+        PLAN_WEEK,
+      </if>
+      <if test="askNum != null">
+        ASK_NUM,
+      </if>
+      <if test="subscribeNum != null">
+        SUBSCRIBE_NUM,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="planCode != null">
+        #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docCode != null">
+        #{docCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=VARCHAR},
+      </if>
+      <if test="planWeek != null">
+        #{planWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="askNum != null">
+        #{askNum,jdbcType=INTEGER},
+      </if>
+      <if test="subscribeNum != null">
+        #{subscribeNum,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update hos_doc_plan
+    <set>
+      <if test="planCode != null">
+        PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      </if>
+      <if test="docCode != null">
+        DOC_CODE = #{docCode,jdbcType=VARCHAR},
+      </if>
+      <if test="planDate != null">
+        PLAN_DATE = #{planDate,jdbcType=VARCHAR},
+      </if>
+      <if test="planWeek != null">
+        PLAN_WEEK = #{planWeek,jdbcType=VARCHAR},
+      </if>
+      <if test="askNum != null">
+        ASK_NUM = #{askNum,jdbcType=INTEGER},
+      </if>
+      <if test="subscribeNum != null">
+        SUBSCRIBE_NUM = #{subscribeNum,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update hos_doc_plan
+    set PLAN_CODE = #{planCode,jdbcType=VARCHAR},
+      DOC_CODE = #{docCode,jdbcType=VARCHAR},
+      PLAN_DATE = #{planDate,jdbcType=VARCHAR},
+      PLAN_WEEK = #{planWeek,jdbcType=VARCHAR},
+      ASK_NUM = #{askNum,jdbcType=INTEGER},
+      SUBSCRIBE_NUM = #{subscribeNum,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </update>
+  <sql id="hos_doc_plan_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="planCode != null and planCode.trim().length() != 0">
+         AND (PLAN_CODE like concat('%',#{planCode},'%')) 
+      </if>
+      <if test="docCode != null and docCode.trim().length() != 0">
+         AND (DOC_CODE like concat('%',#{docCode},'%')) 
+      </if>
+      <if test="planDate != null and planDate.trim().length() != 0">
+         AND (PLAN_DATE like concat('%',#{planDate},'%')) 
+      </if>
+      <if test="planWeek != null and planWeek.trim().length() != 0">
+         AND (PLAN_WEEK like concat('%',#{planWeek},'%')) 
+      </if>
+      <if test="askNum != null">
+        AND (ASK_NUM = #{askNum})
+      </if>
+      <if test="subscribeNum != null">
+        AND (SUBSCRIBE_NUM = #{subscribeNum})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="hos_doc_plan_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="planCode != null and planCode.trim().length() != 0">
+        AND (PLAN_CODE = #{planCode})
+      </if>
+      <if test="docCode != null and docCode.trim().length() != 0">
+        AND (DOC_CODE = #{docCode})
+      </if>
+      <if test="planDate != null and planDate.trim().length() != 0">
+        AND (PLAN_DATE = #{planDate})
+      </if>
+      <if test="planWeek != null and planWeek.trim().length() != 0">
+        AND (PLAN_WEEK = #{planWeek})
+      </if>
+      <if test="askNum != null">
+        AND (ASK_NUM = #{askNum})
+      </if>
+      <if test="subscribeNum != null">
+        AND (SUBSCRIBE_NUM = #{subscribeNum})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from hos_doc_plan 
+    <if test="fuzzy">
+      <include refid="hos_doc_plan_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_doc_plan_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into hos_doc_plan ( 
+    PLAN_ID,PLAN_CODE,DOC_CODE,PLAN_DATE,PLAN_WEEK,ASK_NUM,SUBSCRIBE_NUM,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.planId,jdbcType=INTEGER},#{item.planCode,jdbcType=VARCHAR},#{item.docCode,jdbcType=VARCHAR},#{item.planDate,jdbcType=VARCHAR},#{item.planWeek,jdbcType=VARCHAR},#{item.askNum,jdbcType=INTEGER},#{item.subscribeNum,jdbcType=INTEGER},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from hos_doc_plan 
+    <if test="fuzzy">
+      <include refid="hos_doc_plan_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_doc_plan_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update hos_doc_plan 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  PLAN_ID = #{planId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-13 19:45:12 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

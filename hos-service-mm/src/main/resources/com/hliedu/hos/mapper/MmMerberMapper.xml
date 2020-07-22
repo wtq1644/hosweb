@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.mm.mapper.MmMerberMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.mm.domain.MmMerber">
+    
+    <!-- ID -->
+    <id column="MERBER_ID" jdbcType="INTEGER" property="merberId" />
+    
+    <!-- 会员代码 -->
+    <result column="MERBER_CODE" jdbcType="VARCHAR" property="merberCode" />
+    
+    <!-- 手机号 -->
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone" />
+    
+    <!-- 登录名 -->
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    
+    <!-- 密码 -->
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    
+    <!-- 昵称 -->
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    
+    <!-- 头像 -->
+    <result column="USER_ICON" jdbcType="VARCHAR" property="userIcon" />
+    
+    <!-- 微信ID -->
+    <result column="WX_OPEN_ID" jdbcType="VARCHAR" property="wxOpenId" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MERBER_ID, MERBER_CODE, USER_PHONE, LOGIN_NAME, PASSWORD, NICK_NAME, USER_ICON, WX_OPEN_ID, 
+    MEMO, GMT_CREATE, GMT_MODIFIED, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mm_merber
+    where MERBER_ID = #{merberId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mm_merber
+    where MERBER_ID = #{merberId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="MERBER_ID" keyProperty="merberId" useGeneratedKeys="true">
+    insert into mm_merber (MERBER_CODE, USER_PHONE, LOGIN_NAME, 
+      PASSWORD, NICK_NAME, USER_ICON, 
+      WX_OPEN_ID, MEMO, GMT_CREATE, 
+      GMT_MODIFIED, DATA_STATE)
+    values (#{merberCode,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{userIcon,jdbcType=VARCHAR}, 
+      #{wxOpenId,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="MERBER_ID" keyProperty="merberId" useGeneratedKeys="true">
+    insert into mm_merber
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merberCode != null">
+        MERBER_CODE,
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="nickName != null">
+        NICK_NAME,
+      </if>
+      <if test="userIcon != null">
+        USER_ICON,
+      </if>
+      <if test="wxOpenId != null">
+        WX_OPEN_ID,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merberCode != null">
+        #{merberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIcon != null">
+        #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenId != null">
+        #{wxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update mm_merber
+    <set>
+      <if test="merberCode != null">
+        MERBER_CODE = #{merberCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userIcon != null">
+        USER_ICON = #{userIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenId != null">
+        WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MERBER_ID = #{merberId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update mm_merber
+    set MERBER_CODE = #{merberCode,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      USER_ICON = #{userIcon,jdbcType=VARCHAR},
+      WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where MERBER_ID = #{merberId,jdbcType=INTEGER}
+  </update>
+  <sql id="mm_merber_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="merberCode != null and merberCode.trim().length() != 0">
+         AND (MERBER_CODE like concat('%',#{merberCode},'%')) 
+      </if>
+      <if test="userPhone != null and userPhone.trim().length() != 0">
+         AND (USER_PHONE like concat('%',#{userPhone},'%')) 
+      </if>
+      <if test="loginName != null and loginName.trim().length() != 0">
+         AND (LOGIN_NAME like concat('%',#{loginName},'%')) 
+      </if>
+      <if test="password != null and password.trim().length() != 0">
+         AND (PASSWORD like concat('%',#{password},'%')) 
+      </if>
+      <if test="nickName != null and nickName.trim().length() != 0">
+         AND (NICK_NAME like concat('%',#{nickName},'%')) 
+      </if>
+      <if test="userIcon != null and userIcon.trim().length() != 0">
+         AND (USER_ICON like concat('%',#{userIcon},'%')) 
+      </if>
+      <if test="wxOpenId != null and wxOpenId.trim().length() != 0">
+         AND (WX_OPEN_ID like concat('%',#{wxOpenId},'%')) 
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="mm_merber_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="merberCode != null and merberCode.trim().length() != 0">
+        AND (MERBER_CODE = #{merberCode})
+      </if>
+      <if test="userPhone != null and userPhone.trim().length() != 0">
+        AND (USER_PHONE = #{userPhone})
+      </if>
+      <if test="loginName != null and loginName.trim().length() != 0">
+        AND (LOGIN_NAME = #{loginName})
+      </if>
+      <if test="password != null and password.trim().length() != 0">
+        AND (PASSWORD = #{password})
+      </if>
+      <if test="nickName != null and nickName.trim().length() != 0">
+        AND (NICK_NAME = #{nickName})
+      </if>
+      <if test="userIcon != null and userIcon.trim().length() != 0">
+        AND (USER_ICON = #{userIcon})
+      </if>
+      <if test="wxOpenId != null and wxOpenId.trim().length() != 0">
+        AND (WX_OPEN_ID = #{wxOpenId})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from mm_merber 
+    <if test="fuzzy">
+      <include refid="mm_merber_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="mm_merber_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into mm_merber ( 
+    MERBER_ID,MERBER_CODE,USER_PHONE,LOGIN_NAME,PASSWORD,NICK_NAME,USER_ICON,WX_OPEN_ID,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.merberId,jdbcType=INTEGER},#{item.merberCode,jdbcType=VARCHAR},#{item.userPhone,jdbcType=VARCHAR},#{item.loginName,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.nickName,jdbcType=VARCHAR},#{item.userIcon,jdbcType=VARCHAR},#{item.wxOpenId,jdbcType=VARCHAR},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from mm_merber 
+    <if test="fuzzy">
+      <include refid="mm_merber_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="mm_merber_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update mm_merber 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  MERBER_ID = #{merberId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-15 14:00:38 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

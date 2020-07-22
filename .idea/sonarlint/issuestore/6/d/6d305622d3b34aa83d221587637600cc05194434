@@ -1,52 +1,52 @@
 
-L	java:S106"9Replace this use of System.out or System.err by a logger.(øŒ¼Æ
-C
-java:S3740"/Provide the parametrized type for this generic.(¾ã°¤
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-T
-java:S1874";Remove this use of "uncheckedSimpleType"; it is deprecated.(Ú¹ë½úÿÿÿÿ
-a	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(—˜ëùÿÿÿÿ
-<	java:S108")Either remove or fill this block of code.(”ı¾
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-H
-java:S3740"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
-Q	java:S106"9Replace this use of System.out or System.err by a logger.(ò³‹“ıÿÿÿÿ
-C
-java:S3740"/Provide the parametrized type for this generic.(Ú–÷ä
-:
-java:S1168"&Return an empty array instead of null.(¥¹ï
-Q	java:S106"9Replace this use of System.out or System.err by a logger.(ÌÌğıÿÿÿÿ
-<	java:S108")Either remove or fill this block of code.(”ı¾
-C
-java:S3740"/Provide the parametrized type for this generic.(ôºßƒ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+E
+java:S3740$"/Provide the parametrized type for this generic.(Ú–÷ä
+F
+java:S3740¦"/Provide the parametrized type for this generic.(ôºßƒ
+F
+java:S3740¦"/Provide the parametrized type for this generic.(ôºßƒ
+K
+java:S3740¹"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
+K
+java:S3740¹"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
+F
+java:S3740…"/Provide the parametrized type for this generic.(¾ã°¤
+>
+java:S1148M"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148_"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+>
+java:S1148q"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
 ?
-java:S1168"+Return an empty collection instead of null.(¥¹ï
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-L	java:S106"9Replace this use of System.out or System.err by a logger.(ÌóÎû
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-M
-java:S2168"9Remove this dangerous instance of double-checked locking.(ë†ªû
-H
-java:S3740"/Provide the parametrized type for this generic.(‘¾ùÂûÿÿÿÿ
-C
-java:S3740"/Provide the parametrized type for this generic.(ôºßƒ
-T
-java:S1874";Remove this use of "uncheckedSimpleType"; it is deprecated.(çÍâìüÿÿÿÿ
-<
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-:
-java:S1168"&Return an empty array instead of null.(¥¹ï
+java:S1148„"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148˜"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148«"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¾"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Ğ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148ä"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148õ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+N	java:S106""9Replace this use of System.out or System.err by a logger.(øŒ¼Æ
+N	java:S106%"9Replace this use of System.out or System.err by a logger.(ÌóÎû
+S	java:S106("9Replace this use of System.out or System.err by a logger.(ò³‹“ıÿÿÿÿ
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(ÌÌğıÿÿÿÿ
+O
+java:S21689"9Remove this dangerous instance of double-checked locking.(ë†ªû
+A
+java:S1168t"+Return an empty collection instead of null.(¥¹ï
+=
+java:S1168‡"&Return an empty array instead of null.(¥¹ï
+W
+java:S1874Î";Remove this use of "uncheckedSimpleType"; it is deprecated.(Ú¹ë½úÿÿÿÿ
+d	java:S119ß"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(—˜ëùÿÿÿÿ
+W
+java:S1874â";Remove this use of "uncheckedSimpleType"; it is deprecated.(çÍâìüÿÿÿÿ
+=
+java:S1168ø"&Return an empty array instead of null.(¥¹ï
+?	java:S108‰")Either remove or fill this block of code.(”ı¾
+?	java:S108Ÿ")Either remove or fill this block of code.(”ı¾

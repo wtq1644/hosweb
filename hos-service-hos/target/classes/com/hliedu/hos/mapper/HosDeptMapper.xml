@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.hos.mapper.HosDeptMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.hos.domain.HosDept">
+    
+    <!-- ID -->
+    <id column="DEPT_ID" jdbcType="INTEGER" property="deptId" />
+    
+    <!-- 科室名称 -->
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    
+    <!-- 图片访问地址 -->
+    <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 系统状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+    
+    <!-- 科室代码 -->
+    <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPT_ID, DEPT_NAME, IMG_URL, MEMO, GMT_CREATE, GMT_MODIFIED, DATA_STATE, DEPT_CODE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hos_dept
+    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hos_dept
+    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="DEPT_ID" keyProperty="deptId" useGeneratedKeys="true">
+    insert into hos_dept (DEPT_NAME, IMG_URL, MEMO, 
+      GMT_CREATE, GMT_MODIFIED, DATA_STATE, 
+      DEPT_CODE)
+    values (#{deptName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{dataState,jdbcType=INTEGER}, 
+      #{deptCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="DEPT_ID" keyProperty="deptId" useGeneratedKeys="true">
+    insert into hos_dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="imgUrl != null">
+        IMG_URL,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update hos_dept
+    <set>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update hos_dept
+    set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+    where DEPT_ID = #{deptId,jdbcType=INTEGER}
+  </update>
+  <sql id="hos_dept_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="deptName != null and deptName.trim().length() != 0">
+         AND (DEPT_NAME like concat('%',#{deptName},'%')) 
+      </if>
+      <if test="imgUrl != null and imgUrl.trim().length() != 0">
+         AND (IMG_URL like concat('%',#{imgUrl},'%')) 
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+      <if test="deptCode != null and deptCode.trim().length() != 0">
+         AND (DEPT_CODE like concat('%',#{deptCode},'%')) 
+      </if>
+    </trim>
+  </sql>
+  <sql id="hos_dept_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="deptName != null and deptName.trim().length() != 0">
+        AND (DEPT_NAME = #{deptName})
+      </if>
+      <if test="imgUrl != null and imgUrl.trim().length() != 0">
+        AND (IMG_URL = #{imgUrl})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+      <if test="deptCode != null and deptCode.trim().length() != 0">
+        AND (DEPT_CODE = #{deptCode})
+      </if>
+
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from hos_dept 
+    <if test="fuzzy">
+      <include refid="hos_dept_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_dept_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into hos_dept ( 
+    DEPT_ID,DEPT_NAME,IMG_URL,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE,DEPT_CODE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.deptId,jdbcType=INTEGER},#{item.deptName,jdbcType=VARCHAR},#{item.imgUrl,jdbcType=VARCHAR},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER},#{item.deptCode,jdbcType=VARCHAR} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from hos_dept 
+    <if test="fuzzy">
+      <include refid="hos_dept_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="hos_dept_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update hos_dept 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  DEPT_ID = #{deptId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-13 19:45:12 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  <select id="queryDeptByHosIdModel" resultMap="BaseResultMap" parameterType="int">
+    select d.* from hos_dept d , hos_dept_ref r where d.dept_id = r.dept_id and
+    r.hos_id = #{hosId,jdbcType=INTEGER}
+  </select>
+</mapper>

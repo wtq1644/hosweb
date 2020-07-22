@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.msg.mapper.MsgPushMsgMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.msg.domain.MsgPushMsg">
+    
+    <!-- ID -->
+    <id column="MSG_ID" jdbcType="INTEGER" property="msgId" />
+    
+    <!-- 消息CODE -->
+    <result column="MSG_CODE" jdbcType="VARCHAR" property="msgCode" />
+    
+    <!-- 类型（1-站内信、2-微信） -->
+    <result column="MSG_TYPE" jdbcType="INTEGER" property="msgType" />
+    
+    <!-- 发送者CODE -->
+    <result column="SENDER_CODE" jdbcType="VARCHAR" property="senderCode" />
+    
+    <!-- 发送者姓名 -->
+    <result column="SENDER_NAME" jdbcType="VARCHAR" property="senderName" />
+    
+    <!-- 接收者CODE -->
+    <result column="RECIVER_CODE" jdbcType="VARCHAR" property="reciverCode" />
+    
+    <!-- 接收者姓名 -->
+    <result column="RECIVER_NAME" jdbcType="VARCHAR" property="reciverName" />
+    
+    <!-- 发送时间 -->
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    
+    <!-- 发送状态(1未发送、2发生中、3已发送) -->
+    <result column="SEND_STATUS" jdbcType="INTEGER" property="sendStatus" />
+    
+    <!-- 读取状态(1未读、2已读) -->
+    <result column="READ_STATUS" jdbcType="INTEGER" property="readStatus" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 最后修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 数据状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hliedu.msg.domain.MsgPushMsg">
+    
+    <!-- 内容 -->
+    <result column="CONTENT" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MSG_ID, MSG_CODE, MSG_TYPE, SENDER_CODE, SENDER_NAME, RECIVER_CODE, RECIVER_NAME, 
+    SEND_TIME, SEND_STATUS, READ_STATUS, MEMO, GMT_CREATE, GMT_MODIFIED, DATA_STATE
+  </sql>
+  <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_push_msg
+    where MSG_ID = #{msgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from msg_push_msg
+    where MSG_ID = #{msgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="MSG_ID" keyProperty="msgId" useGeneratedKeys="true">
+    insert into msg_push_msg (MSG_CODE, MSG_TYPE, SENDER_CODE, 
+      SENDER_NAME, RECIVER_CODE, RECIVER_NAME, 
+      SEND_TIME, SEND_STATUS, READ_STATUS, 
+      MEMO, GMT_CREATE, GMT_MODIFIED, 
+      DATA_STATE, CONTENT)
+    values (#{msgCode,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, #{senderCode,jdbcType=VARCHAR}, 
+      #{senderName,jdbcType=VARCHAR}, #{reciverCode,jdbcType=VARCHAR}, #{reciverName,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{sendStatus,jdbcType=INTEGER}, #{readStatus,jdbcType=INTEGER}, 
+      #{memo,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{dataState,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="MSG_ID" keyProperty="msgId" useGeneratedKeys="true">
+    insert into msg_push_msg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgCode != null">
+        MSG_CODE,
+      </if>
+      <if test="msgType != null">
+        MSG_TYPE,
+      </if>
+      <if test="senderCode != null">
+        SENDER_CODE,
+      </if>
+      <if test="senderName != null">
+        SENDER_NAME,
+      </if>
+      <if test="reciverCode != null">
+        RECIVER_CODE,
+      </if>
+      <if test="reciverName != null">
+        RECIVER_NAME,
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME,
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS,
+      </if>
+      <if test="readStatus != null">
+        READ_STATUS,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgCode != null">
+        #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="senderCode != null">
+        #{senderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverCode != null">
+        #{reciverCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverName != null">
+        #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="readStatus != null">
+        #{readStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update msg_push_msg
+    <set>
+      <if test="msgCode != null">
+        MSG_CODE = #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null">
+        MSG_TYPE = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="senderCode != null">
+        SENDER_CODE = #{senderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        SENDER_NAME = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverCode != null">
+        RECIVER_CODE = #{reciverCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverName != null">
+        RECIVER_NAME = #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS = #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="readStatus != null">
+        READ_STATUS = #{readStatus,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where MSG_ID = #{msgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs">
+    update msg_push_msg
+    set MSG_CODE = #{msgCode,jdbcType=VARCHAR},
+      MSG_TYPE = #{msgType,jdbcType=INTEGER},
+      SENDER_CODE = #{senderCode,jdbcType=VARCHAR},
+      SENDER_NAME = #{senderName,jdbcType=VARCHAR},
+      RECIVER_CODE = #{reciverCode,jdbcType=VARCHAR},
+      RECIVER_NAME = #{reciverName,jdbcType=VARCHAR},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      SEND_STATUS = #{sendStatus,jdbcType=INTEGER},
+      READ_STATUS = #{readStatus,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where MSG_ID = #{msgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update msg_push_msg
+    set MSG_CODE = #{msgCode,jdbcType=VARCHAR},
+      MSG_TYPE = #{msgType,jdbcType=INTEGER},
+      SENDER_CODE = #{senderCode,jdbcType=VARCHAR},
+      SENDER_NAME = #{senderName,jdbcType=VARCHAR},
+      RECIVER_CODE = #{reciverCode,jdbcType=VARCHAR},
+      RECIVER_NAME = #{reciverName,jdbcType=VARCHAR},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      SEND_STATUS = #{sendStatus,jdbcType=INTEGER},
+      READ_STATUS = #{readStatus,jdbcType=INTEGER},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where MSG_ID = #{msgId,jdbcType=INTEGER}
+  </update>
+  <sql id="msg_push_msg_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="msgCode != null and msgCode.trim().length() != 0">
+         AND (MSG_CODE like concat('%',#{msgCode},'%')) 
+      </if>
+      <if test="msgType != null">
+        AND (MSG_TYPE = #{msgType})
+      </if>
+      <if test="senderCode != null and senderCode.trim().length() != 0">
+         AND (SENDER_CODE like concat('%',#{senderCode},'%')) 
+      </if>
+      <if test="senderName != null and senderName.trim().length() != 0">
+         AND (SENDER_NAME like concat('%',#{senderName},'%')) 
+      </if>
+      <if test="reciverCode != null and reciverCode.trim().length() != 0">
+         AND (RECIVER_CODE like concat('%',#{reciverCode},'%')) 
+      </if>
+      <if test="reciverName != null and reciverName.trim().length() != 0">
+         AND (RECIVER_NAME like concat('%',#{reciverName},'%')) 
+      </if>
+      <if test="sendTime != null">
+        AND (SEND_TIME = #{sendTime})
+      </if>
+      <if test="sendStatus != null">
+        AND (SEND_STATUS = #{sendStatus})
+      </if>
+      <if test="readStatus != null">
+        AND (READ_STATUS = #{readStatus})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="msg_push_msg_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="msgCode != null and msgCode.trim().length() != 0">
+        AND (MSG_CODE = #{msgCode})
+      </if>
+      <if test="msgType != null">
+        AND (MSG_TYPE = #{msgType})
+      </if>
+      <if test="senderCode != null and senderCode.trim().length() != 0">
+        AND (SENDER_CODE = #{senderCode})
+      </if>
+      <if test="senderName != null and senderName.trim().length() != 0">
+        AND (SENDER_NAME = #{senderName})
+      </if>
+      <if test="reciverCode != null and reciverCode.trim().length() != 0">
+        AND (RECIVER_CODE = #{reciverCode})
+      </if>
+      <if test="reciverName != null and reciverName.trim().length() != 0">
+        AND (RECIVER_NAME = #{reciverName})
+      </if>
+      <if test="sendTime != null">
+        AND (SEND_TIME = #{sendTime})
+      </if>
+      <if test="sendStatus != null">
+        AND (SEND_STATUS = #{sendStatus})
+      </if>
+      <if test="readStatus != null">
+        AND (READ_STATUS = #{readStatus})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from msg_push_msg 
+    <if test="fuzzy">
+      <include refid="msg_push_msg_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="msg_push_msg_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into msg_push_msg ( 
+    MSG_ID,MSG_CODE,MSG_TYPE,SENDER_CODE,SENDER_NAME,RECIVER_CODE,RECIVER_NAME,SEND_TIME,SEND_STATUS,READ_STATUS,MEMO,GMT_CREATE,GMT_MODIFIED,DATA_STATE,CONTENT ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.msgId,jdbcType=INTEGER},#{item.msgCode,jdbcType=VARCHAR},#{item.msgType,jdbcType=INTEGER},#{item.senderCode,jdbcType=VARCHAR},#{item.senderName,jdbcType=VARCHAR},#{item.reciverCode,jdbcType=VARCHAR},#{item.reciverName,jdbcType=VARCHAR},#{item.sendTime,jdbcType=TIMESTAMP},#{item.sendStatus,jdbcType=INTEGER},#{item.readStatus,jdbcType=INTEGER},#{item.memo,jdbcType=VARCHAR},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.dataState,jdbcType=INTEGER},#{item.content,jdbcType=LONGVARCHAR} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from msg_push_msg 
+    <if test="fuzzy">
+      <include refid="msg_push_msg_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="msg_push_msg_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update msg_push_msg 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  MSG_ID = #{msgId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-15 14:19:58 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>

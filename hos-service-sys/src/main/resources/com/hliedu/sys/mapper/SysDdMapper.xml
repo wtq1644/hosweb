@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hliedu.sys.mapper.SysDdMapper">
+  <resultMap id="BaseResultMap" type="com.hliedu.sys.domain.SysDd">
+    <id column="DD_ID" jdbcType="INTEGER" property="ddId" />
+    
+    <!-- 对应的TABLE -->
+    <result column="DD_TABLE" jdbcType="VARCHAR" property="ddTable" />
+    
+    <!-- TABLE中COLUMN -->
+    <result column="DD_COLUMN" jdbcType="VARCHAR" property="ddColumn" />
+    
+    <!-- 代码 -->
+    <result column="DD_CODE" jdbcType="VARCHAR" property="ddCode" />
+    
+    <!-- 代码对应的显示的值 -->
+    <result column="DD_VALUE" jdbcType="VARCHAR" property="ddValue" />
+    
+    <!-- 说明 -->
+    <result column="DD_REMARK" jdbcType="VARCHAR" property="ddRemark" />
+    
+    <!-- 排序 -->
+    <result column="DD_ORDER" jdbcType="INTEGER" property="ddOrder" />
+    
+    <!-- 创建时间 -->
+    <result column="GMT_CREATE" jdbcType="TIMESTAMP" property="gmtCreate" />
+    
+    <!-- 修改时间 -->
+    <result column="GMT_MODIFIED" jdbcType="TIMESTAMP" property="gmtModified" />
+    
+    <!-- 备注 -->
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    
+    <!-- 状态 -->
+    <result column="DATA_STATE" jdbcType="INTEGER" property="dataState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DD_ID, DD_TABLE, DD_COLUMN, DD_CODE, DD_VALUE, DD_REMARK, DD_ORDER, GMT_CREATE, GMT_MODIFIED, 
+    MEMO, DATA_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dd
+    where DD_ID = #{ddId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_dd
+    where DD_ID = #{ddId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="DD_ID" keyProperty="ddId" useGeneratedKeys="true">
+    insert into sys_dd (DD_TABLE, DD_COLUMN, DD_CODE, 
+      DD_VALUE, DD_REMARK, DD_ORDER, 
+      GMT_CREATE, GMT_MODIFIED, MEMO, 
+      DATA_STATE)
+    values (#{ddTable,jdbcType=VARCHAR}, #{ddColumn,jdbcType=VARCHAR}, #{ddCode,jdbcType=VARCHAR}, 
+      #{ddValue,jdbcType=VARCHAR}, #{ddRemark,jdbcType=VARCHAR}, #{ddOrder,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, 
+      #{dataState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="DD_ID" keyProperty="ddId" useGeneratedKeys="true">
+    insert into sys_dd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ddTable != null">
+        DD_TABLE,
+      </if>
+      <if test="ddColumn != null">
+        DD_COLUMN,
+      </if>
+      <if test="ddCode != null">
+        DD_CODE,
+      </if>
+      <if test="ddValue != null">
+        DD_VALUE,
+      </if>
+      <if test="ddRemark != null">
+        DD_REMARK,
+      </if>
+      <if test="ddOrder != null">
+        DD_ORDER,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="dataState != null">
+        DATA_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ddTable != null">
+        #{ddTable,jdbcType=VARCHAR},
+      </if>
+      <if test="ddColumn != null">
+        #{ddColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCode != null">
+        #{ddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ddValue != null">
+        #{ddValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddRemark != null">
+        #{ddRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ddOrder != null">
+        #{ddOrder,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        #{dataState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update sys_dd
+    <set>
+      <if test="ddTable != null">
+        DD_TABLE = #{ddTable,jdbcType=VARCHAR},
+      </if>
+      <if test="ddColumn != null">
+        DD_COLUMN = #{ddColumn,jdbcType=VARCHAR},
+      </if>
+      <if test="ddCode != null">
+        DD_CODE = #{ddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ddValue != null">
+        DD_VALUE = #{ddValue,jdbcType=VARCHAR},
+      </if>
+      <if test="ddRemark != null">
+        DD_REMARK = #{ddRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ddOrder != null">
+        DD_ORDER = #{ddOrder,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="dataState != null">
+        DATA_STATE = #{dataState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where DD_ID = #{ddId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey">
+    update sys_dd
+    set DD_TABLE = #{ddTable,jdbcType=VARCHAR},
+      DD_COLUMN = #{ddColumn,jdbcType=VARCHAR},
+      DD_CODE = #{ddCode,jdbcType=VARCHAR},
+      DD_VALUE = #{ddValue,jdbcType=VARCHAR},
+      DD_REMARK = #{ddRemark,jdbcType=VARCHAR},
+      DD_ORDER = #{ddOrder,jdbcType=INTEGER},
+      GMT_CREATE = #{gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      DATA_STATE = #{dataState,jdbcType=INTEGER}
+    where DD_ID = #{ddId,jdbcType=INTEGER}
+  </update>
+  <sql id="sys_dd_query_fuzzy_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="ddTable != null and ddTable.trim().length() != 0">
+         AND (DD_TABLE like concat('%',#{ddTable},'%')) 
+      </if>
+      <if test="ddColumn != null and ddColumn.trim().length() != 0">
+         AND (DD_COLUMN like concat('%',#{ddColumn},'%')) 
+      </if>
+      <if test="ddCode != null and ddCode.trim().length() != 0">
+         AND (DD_CODE like concat('%',#{ddCode},'%')) 
+      </if>
+      <if test="ddValue != null and ddValue.trim().length() != 0">
+         AND (DD_VALUE like concat('%',#{ddValue},'%')) 
+      </if>
+      <if test="ddRemark != null and ddRemark.trim().length() != 0">
+         AND (DD_REMARK like concat('%',#{ddRemark},'%')) 
+      </if>
+      <if test="ddOrder != null">
+        AND (DD_ORDER = #{ddOrder})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+         AND (MEMO like concat('%',#{memo},'%')) 
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <sql id="sys_dd_query_condition">
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="ddTable != null and ddTable.trim().length() != 0">
+        AND (DD_TABLE = #{ddTable})
+      </if>
+      <if test="ddColumn != null and ddColumn.trim().length() != 0">
+        AND (DD_COLUMN = #{ddColumn})
+      </if>
+      <if test="ddCode != null and ddCode.trim().length() != 0">
+        AND (DD_CODE = #{ddCode})
+      </if>
+      <if test="ddValue != null and ddValue.trim().length() != 0">
+        AND (DD_VALUE = #{ddValue})
+      </if>
+      <if test="ddRemark != null and ddRemark.trim().length() != 0">
+        AND (DD_REMARK = #{ddRemark})
+      </if>
+      <if test="ddOrder != null">
+        AND (DD_ORDER = #{ddOrder})
+      </if>
+      <if test="startDate != null and startDate.trim().length() != 0">
+         AND (GMT_CREATE &gt;= #{startDate}) 
+      </if>
+      <if test="endDate != null and endDate.trim().length() != 0">
+         AND (GMT_CREATE &lt;= #{endDate}) 
+      </if>
+      <if test="gmtModified != null">
+        AND (GMT_MODIFIED = #{gmtModified})
+      </if>
+      <if test="memo != null and memo.trim().length() != 0">
+        AND (MEMO = #{memo})
+      </if>
+      <if test="dataState != null">
+        AND (DATA_STATE = #{dataState})
+      </if>
+    </trim>
+  </sql>
+  <select id="query" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+     from sys_dd 
+    <if test="fuzzy">
+      <include refid="sys_dd_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="sys_dd_query_condition" />
+    </if>
+    <if test="order and orderStr == null">
+      order by GMT_CREATE desc
+    </if>
+    <if test="order and orderStr != null and orderStr.trim().length() != 0">
+      order by ${orderStr}
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into sys_dd ( 
+    DD_ID,DD_TABLE,DD_COLUMN,DD_CODE,DD_VALUE,DD_REMARK,DD_ORDER,GMT_CREATE,GMT_MODIFIED,MEMO,DATA_STATE ) values 
+    <foreach collection="list" index="index" item="item" separator=",">
+       ( #{item.ddId,jdbcType=INTEGER},#{item.ddTable,jdbcType=VARCHAR},#{item.ddColumn,jdbcType=VARCHAR},#{item.ddCode,jdbcType=VARCHAR},#{item.ddValue,jdbcType=VARCHAR},#{item.ddRemark,jdbcType=VARCHAR},#{item.ddOrder,jdbcType=INTEGER},#{item.gmtCreate,jdbcType=TIMESTAMP},#{item.gmtModified,jdbcType=TIMESTAMP},#{item.memo,jdbcType=VARCHAR},#{item.dataState,jdbcType=INTEGER} ) 
+    </foreach>
+  </insert>
+  <select id="count" resultType="int">
+    select count(*) from sys_dd 
+    <if test="fuzzy">
+      <include refid="sys_dd_query_fuzzy_condition" />
+    </if>
+    <if test="!fuzzy">
+      <include refid="sys_dd_query_condition" />
+    </if>
+  </select>
+  <update id="updateStateByPrimaryKey" parameterType="Map">
+    update sys_dd 
+     set DATA_STATE = #{dataState,jdbcType=INTEGER},GMT_MODIFIED=SYSDATE() 
+    <if test="memo != null">
+       , MEMO = #{memo,jdbcType=VARCHAR} 
+    </if>
+    where  DD_ID = #{ddId,jdbcType=INTEGER}
+    <if test="oldDataState != null">
+       and DATA_STATE = #{oldDataState,jdbcType=INTEGER} 
+    </if>
+  </update>
+  
+  <!-- ### Created by Mybatis Generator on, Time: 2019-06-15 14:51:47 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+</mapper>
